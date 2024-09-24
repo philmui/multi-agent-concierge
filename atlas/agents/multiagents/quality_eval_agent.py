@@ -58,6 +58,7 @@ class QualityEvalAgent:
         self.state = state
         self.system_prompt = PromptTemplate(self.SYSTEM_PROMPT_TEMPLATE)
         self.agent = self._create_agent()
+        self.memory = self.agent.memory
 
     def _create_agent(self) -> OpenAIAgent:
         def dummy_tool() -> bool:

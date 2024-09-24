@@ -27,6 +27,7 @@ class CompanyResearchAgent:
         self.state = state
         self.finance_research_tool = FinanceResearchTool()
         self.agent = self._create_agent()
+        self.memory = self.agent.memory
 
     def _create_agent(self) -> OpenAIAgent:
         tools = [

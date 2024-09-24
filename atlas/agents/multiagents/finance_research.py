@@ -13,6 +13,7 @@
 #
 # Example query to try:
 # > How is the US economy the past year?  Does it impact the stock price for Salesforce?  What about the general consumer sentiment?
+# > That's great.  How does consumer sentiment affects Salesforce and its share price?
 #
 # @ Phil Mui
 # 
@@ -48,7 +49,7 @@ from atlas.agents.finance import (
     StockAgent, 
 )
 
-from atlas.multiagents import (
+from atlas.agents.multiagents import (
     ConciergeAgent,
     OrchestrationAgent,
     QualityEvalAgent,
@@ -56,7 +57,14 @@ from atlas.multiagents import (
     quality_evaluation_prompt,
 )
 
-from .finance_config import AgentName
+class AgentName(str, Enum):
+    STOCK_LOOKUP = "stock_lookup"
+    COMPANY_RESEARCH = "company_research"
+    INDUSTRY_RESEARCH = "industry_research"
+    CONSUMER_RESEARCH = "consumer_research"
+    CONCIERGE = "concierge"
+    ORCHESTRATOR = "orchestrator"
+    
     
 def stock_lookup_agent_factory(state: dict) -> StockAgent:
     return StockAgent(state)

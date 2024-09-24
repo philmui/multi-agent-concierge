@@ -39,6 +39,7 @@ The current state of the user is:
     def __init__(self, state: dict):
         self.state = state
         self.agent = self._create_agent()
+        self.memory = self.agent.memory
 
     def _create_agent(self) -> OpenAIAgent:
         def dummy_tool() -> bool:

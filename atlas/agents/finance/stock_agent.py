@@ -29,7 +29,7 @@ class StockAgent:
     def __init__(self, state: dict):
         self.state = state
         self.agent = self._create_agent()
-        self.memory = self.agent.memory  # Add this line
+        self.memory = self.agent.memory
 
     def _create_agent(self) -> OpenAIAgent:
         def done(ticker: str) -> None:

@@ -8,7 +8,7 @@
             "name": "research",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/atlas/agents/multiagents/research.py",
+            "program": "${workspaceFolder}/atlas/agents/multiagents/finance_research.py",
             "console": "integratedTerminal",
             "args": "",
             "purpose": [

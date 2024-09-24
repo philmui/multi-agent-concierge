@@ -15,6 +15,7 @@ _logger = logging.getLogger("orchestrator_agent")
 
 import asyncio
 from datetime import datetime
+from enum import Enum
 import pprint
 from typing import List
 
@@ -24,7 +25,14 @@ from llama_index.core.tools import FunctionTool
 from llama_index.llms.openai import OpenAI
 from llama_index.agent.openai import OpenAIAgent
 
-from .finance_config import AgentName
+class AgentName(str, Enum):
+    STOCK_LOOKUP = "stock_lookup"
+    COMPANY_RESEARCH = "company_research"
+    INDUSTRY_RESEARCH = "industry_research"
+    CONSUMER_RESEARCH = "consumer_research"
+    CONCIERGE = "concierge"
+    ORCHESTRATOR = "orchestrator"
+    
 
 ORCHESTRATOR_PROMPT_TMPL = (f"""
 You are an expert orchestration agent choosing which agent to run next to fully answer the user query.
@@ -69,6 +77,7 @@ class OrchestrationAgent:
     def __init__(self, state: dict):
         self.state = state
         self.agent = self._create_agent()
+        self.memory = self.agent.memory
 
     def _create_agent(self) -> OpenAIAgent:
         tools = [
